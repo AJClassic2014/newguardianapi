@@ -15,11 +15,12 @@ import Footer from "./components/Footer";
 
 const styles = () => ({
   title: {
+    padding: '15px 0 0 85px',
     fontSize: '2rem',
     fontWeight: 700,
-    width: '160px',
+    width: '100px',
     color: '#FFFFFF',
-    backgroundColor: '#0d7cad',
+    backgroundColor: '#0f1010',
   }
 });
 
@@ -31,6 +32,7 @@ class App extends Component {
       error: "",
       userTypes: "",
       results: [],
+      latestNews: [],
       pinnedList: [],
       currentPage: 0,
       allPages: 0,
@@ -42,6 +44,7 @@ class App extends Component {
     this.handlePage = this.handlePage.bind(this);
     this.handlePinnedList = this.handlePinnedList.bind(this);
     this.getResultList = this.getResultList.bind(this);
+    this.getLatestNews = this.getLatestNews.bind(this);
   }
 
   handleUserTypes = (userTypes) => {
@@ -51,6 +54,23 @@ class App extends Component {
   handlePinnedList = (pinnedList) => {
     this.setState({ pinnedList: pinnedList });
   };
+
+  getLatestNews = () => {
+    this.setState(() => {
+      guardianApi("",0)
+      .then(({ data: { response } }) => {
+        let results = groupBySection(response.results).slice(0,5);
+        this.setState({
+          latestNews: [...results],
+          error: "",
+        });
+      })
+      .catch(error => {
+        console.log(error);
+        this.setState({ error: error.message });
+      });
+  });
+  }
 
   getResultList = (input, page) => {
     this.setState({loading: true,}, ()=> {
@@ -85,6 +105,7 @@ class App extends Component {
 
   componentDidMount = () => {
     this.getResultList(this.state.userTypes, this.state.currentPage);
+    this.getLatestNews();
   };
 
   render() {
@@ -92,6 +113,7 @@ class App extends Component {
     const {
       userTypes,
       results,
+      latestNews,
       currentPage,
       allPages,
       total,
@@ -99,7 +121,9 @@ class App extends Component {
       loading,
       error,
     } = this.state;
+    console.log(results)
     let element = null;
+    let latestNewsList = null;
     if(loading && error.length === 0){
       element = <LoadingPage />;
     }
@@ -119,13 +143,16 @@ class App extends Component {
       handlePage={this.handlePage}
       handlePinnedList={this.handlePinnedList}
     />;
+    latestNewsList = <LatestNewsList
+    latestNews={latestNews}
+    />
     }
     return (
       <div>
       <div className="Header">
       <Typography
             className={classes.title}>
-            API
+            Gnews
           </Typography> 
           <SearchField
             userTypes={userTypes}
@@ -142,9 +169,7 @@ class App extends Component {
           <Footer />
         </div>
         <div>
-        <LatestNewsList
-        results={results}
-        />
+       {latestNewsList}
         <PinnedList
         results={results}
         pinnedList={pinnedList}

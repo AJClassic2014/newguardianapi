@@ -37,6 +37,7 @@ const styles = theme => ({
     color: 'white',
   },
   link: {
+    color: "#000000",
     textDecoration:'none',
   }
 
@@ -101,12 +102,12 @@ class CheckboxList extends React.Component {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
-        <div className={classes.pinnedBar}>
+{/*         <div className={classes.pinnedBar}>
           <span className={classes.pinnedTitle}>
             Pinned Items
         </span>
-        </div>
-        {
+        </div> */}
+{/*         {
           pinnedList.map(pinnedItem => (
             <ListItem className={classes.pinned} key={pinnedItem.id}>
               <ListItemText
@@ -132,7 +133,7 @@ class CheckboxList extends React.Component {
             </ListItem>
           )
           )
-        }
+        } */}
       </List>
     );
   }

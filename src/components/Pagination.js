@@ -49,8 +49,8 @@ class Pagination extends React.Component {
       allPages > 1 &&
       <Toolbar className={classes.root}>
         <div className={classes.menuLeft}>
-          {`${(currentPage - 1) * 10 + 1}-${currentPage * 10 > total ? 
-            total : currentPage * 10} of ${total}`}
+          {`${(currentPage - 1) * 15 + 1}-${currentPage * 15 > total ? 
+            total : currentPage * 15} of ${total}`}
         </div>
         <div className={classes.menuRight}>
             <Button

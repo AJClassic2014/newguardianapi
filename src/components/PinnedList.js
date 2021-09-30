@@ -25,14 +25,18 @@ const styles = theme => ({
       color: '#ff6600',
     },
     pinned: {
-      backgroundColor: '#70c5ca85',
+      backgroundColor: '#f2f2f2',
     },
     pinnedBar: {
+      display: 'flex',
+      alignContent: 'center',
+      minHeight: '3rem',
       fontSize: '1rem',
       fontWeight: 550,
-      backgroundColor: '#ed8836a3',
+      backgroundColor: '#feb301',
     },
     pinnedTitle: {
+      margin: 'auto',
       fontSize: '1rem',
       fontWeight: 550,
       color: 'white',

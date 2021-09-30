@@ -6,14 +6,17 @@ import TextField from '@material-ui/core/TextField';
 
 const styles = theme => ({
   textField: {
+    backgroundColor: '#ffffff',
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
+    marginBottom: 10,
     width: 500,
   },
   button: {
     margin: theme.spacing.unit,
     marginTop: '13px',
     width: 110,
+    backgroundColor: '#404040'
   },
   inputHeight: {
     height: 4,

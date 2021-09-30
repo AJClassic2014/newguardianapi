@@ -25,17 +25,22 @@ const styles = theme => ({
   pinned: {
     backgroundColor: '#70c5ca85',
   },
-  pinnedBar: {
+  newsBar: {
+    display: 'flex',
+    alignContent: 'center',
+    minHeight: '3rem',
     fontSize: '1rem',
     fontWeight: 550,
-    backgroundColor: '#ed8836a3',
+    backgroundColor: '#ee0017',
   },
-  pinnedTitle: {
+  newsTitle: {
+    margin: 'auto',
     fontSize: '1rem',
     fontWeight: 550,
     color: 'white',
   },
   link: {
+    color: "#000000",
     textDecoration:'none',
   }
 
@@ -69,17 +74,22 @@ class LatestNewsList extends React.Component {
   render() {
     const {
       classes,
-      results,
+      latestNews,
     } = this.props;
     return (
       <List dense className={classes.root}>
-        {results.slice(0,14).map(value => (
+        <div className={classes.newsBar}>
+            <div className={classes.newsTitle}>
+              Latest News
+          </div>
+          </div>
+        {latestNews.map(value => (
           <ListItem key={value.id}>
             <ListItemText
               primary={
                 <Typography
                   className={classes.title}
-                  color="textPrimary">
+                  color="#000000">
                   <a href={value.link} className={classes.link}>{value.title}</a>
                 </Typography>
               }
