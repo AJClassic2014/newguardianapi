@@ -20,19 +20,19 @@ const ResultList = ({
   total,
   handlePage,
 }) => (
-    <div className={classes.root}>
-      <CheckboxList
-        results={results}
-        pinnedList={pinnedList}
-        handlePinnedList={handlePinnedList}
-      /> 
-      <Pagination
-        currentPage={currentPage}
-        allPages={allPages}
-        total={total}
-        handlePage={handlePage}
-      />
-    </div>
-  );
+  <div className={classes.root}>
+    <CheckboxList
+      results={results}
+      pinnedList={pinnedList}
+      handlePinnedList={handlePinnedList}
+    />
+    <Pagination
+      currentPage={currentPage}
+      allPages={allPages}
+      total={total}
+      handlePage={handlePage}
+    />
+  </div>
+);
 
 export default withStyles(styles)(ResultList);

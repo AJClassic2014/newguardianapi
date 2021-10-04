@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
+//import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import './App.css';
 import { withStyles } from '@material-ui/core/styles';
 import groupBySection from "./functions/GroupBySection";
@@ -57,40 +58,40 @@ class App extends Component {
 
   getLatestNews = () => {
     this.setState(() => {
-      guardianApi("",0)
-      .then(({ data: { response } }) => {
-        let results = groupBySection(response.results).slice(0,5);
-        this.setState({
-          latestNews: [...results],
-          error: "",
+      guardianApi("", 0)
+        .then(({ data: { response } }) => {
+          let results = groupBySection(response.results).slice(0, 5);
+          this.setState({
+            latestNews: [...results],
+            error: "",
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          this.setState({ error: error.message });
         });
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({ error: error.message });
-      });
-  });
+    });
   }
 
   getResultList = (input, page) => {
-    this.setState({loading: true,}, ()=> {
+    this.setState({ loading: true, }, () => {
       guardianApi(input, page)
-      .then(({ data: { response } }) => {
-        let results = groupBySection(response.results);
-        this.setState({
-          results: [...results],
-          currentPage: response.currentPage,
-          allPages: response.pages,
-          total: response.total,
-          loading: false,
-          error: "",
+        .then(({ data: { response } }) => {
+          let results = groupBySection(response.results);
+          this.setState({
+            results: [...results],
+            currentPage: response.currentPage,
+            allPages: response.pages,
+            total: response.total,
+            loading: false,
+            error: "",
+          });
+        })
+        .catch(error => {
+          console.log(error);
+          this.setState({ error: error.message });
         });
-      })
-      .catch(error => {
-        console.log(error);
-        this.setState({ error: error.message });
-      });
-  });
+    });
   }
 
   handlePage = (currentPage) => {
@@ -124,59 +125,59 @@ class App extends Component {
     console.log(results)
     let element = null;
     let latestNewsList = null;
-    if(loading && error.length === 0){
+    if (loading && error.length === 0) {
       element = <LoadingPage />;
     }
-    else if(error.length !== 0){
+    else if (error.length !== 0) {
       element = <ErrorPage error={error} />;
     }
-    else if(results.length === 0){
+    else if (results.length === 0) {
       element = <NoResults />;
     }
-    else{
+    else {
       element = <ResultList
-      results={results}
-      pinnedList={pinnedList}
-      currentPage={currentPage}
-      allPages={allPages}
-      total={total} 
-      handlePage={this.handlePage}
-      handlePinnedList={this.handlePinnedList}
-    />;
-    latestNewsList = <LatestNewsList
-    latestNews={latestNews}
-    />
+        results={results}
+        pinnedList={pinnedList}
+        currentPage={currentPage}
+        allPages={allPages}
+        total={total}
+        handlePage={this.handlePage}
+        handlePinnedList={this.handlePinnedList}
+      />;
+      latestNewsList = <LatestNewsList
+        latestNews={latestNews}
+      />
     }
     return (
       <div>
-      <div className="Header">
-      <Typography
+        <div className="Header">
+          <Typography
             className={classes.title}>
             Gnews
-          </Typography> 
+          </Typography>
           <SearchField
             userTypes={userTypes}
             handleSearch={this.handleSearch}
             handleUserTypes={this.handleUserTypes}
           />
         </div>
-      <div className="App">
-      <div>
+        <div className="App">
+          <div>
+          </div>
+          <div className="Container">
+            <div className="Total">About {total} results </div>
+            {element}
+            <Footer />
+          </div>
+          <div>
+            {latestNewsList}
+            <PinnedList
+              results={results}
+              pinnedList={pinnedList}
+              handlePinnedList={this.handlePinnedList}
+            />
+          </div>
         </div>
-        <div className="Container">
-          <div className="Total">About {total} results </div>
-          {element}
-          <Footer />
-        </div>
-        <div>
-       {latestNewsList}
-        <PinnedList
-        results={results}
-        pinnedList={pinnedList}
-        handlePinnedList={this.handlePinnedList}
-      /> 
-        </div>
-      </div>
       </div>
     );
   }

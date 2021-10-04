@@ -38,7 +38,7 @@ const styles = theme => ({
   },
   link: {
     color: "#000000",
-    textDecoration:'none',
+    textDecoration: 'none',
   }
 
 });
@@ -102,38 +102,6 @@ class CheckboxList extends React.Component {
             </ListItemSecondaryAction>
           </ListItem>
         ))}
-{/*         <div className={classes.pinnedBar}>
-          <span className={classes.pinnedTitle}>
-            Pinned Items
-        </span>
-        </div> */}
-{/*         {
-          pinnedList.map(pinnedItem => (
-            <ListItem className={classes.pinned} key={pinnedItem.id}>
-              <ListItemText
-                primary={
-                  <Typography className={classes.title} color="textPrimary">
-                    {pinnedItem.title}
-                  </Typography>
-                }
-                secondary={
-                  <React.Fragment>
-                    <Typography component="span" color="textPrimary">
-                      {pinnedItem.date}&nbsp;&nbsp;<span className={classes.section}>Section:</span> {pinnedItem.section}
-                    </Typography>
-                    {pinnedItem.link}
-                  </React.Fragment>
-                } />
-              <ListItemSecondaryAction>
-                <Checkbox
-                  onChange={this.handleToggle(pinnedItem)}
-                  checked={this.state.checked.indexOf(pinnedItem) !== -1}
-                />
-              </ListItemSecondaryAction>
-            </ListItem>
-          )
-          )
-        } */}
       </List>
     );
   }

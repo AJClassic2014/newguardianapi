@@ -1,7 +1,4 @@
 .Header{
-  /* display: flex;
-  flex-flow: row;
-  align-items: center; */
   display:grid;
   grid-template-columns: 140px 4fr 3fr;
   align-items: center;

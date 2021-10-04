@@ -41,35 +41,14 @@ const styles = theme => ({
   },
   link: {
     color: "#000000",
-    textDecoration:'none',
+    textDecoration: 'none',
   }
-
 });
 
 class LatestNewsList extends React.Component {
   constructor(props) {
     super(props);
-    /* this.state = {
-      checked: [1],
-    }; */
   }
-
-  /* handleToggle = value => () => {
-    const { pinnedList, handlePinnedList } = this.props;
-    const currentIndex = pinnedList.indexOf(value);
-    const newList = [...pinnedList];
-
-    if (currentIndex === -1) {
-      newList.push(value);
-    } else {
-      newList.splice(currentIndex, 1);
-    }
-    handlePinnedList(newList);
-    this.setState({
-      checked: newList,
-    });
-    console.log(newList);
-  }; */
 
   render() {
     const {
@@ -79,10 +58,10 @@ class LatestNewsList extends React.Component {
     return (
       <List dense className={classes.root}>
         <div className={classes.newsBar}>
-            <div className={classes.newsTitle}>
-              Latest News
+          <div className={classes.newsTitle}>
+            Latest News
           </div>
-          </div>
+        </div>
         {latestNews.map(value => (
           <ListItem key={value.id}>
             <ListItemText
@@ -93,12 +72,10 @@ class LatestNewsList extends React.Component {
                   <a href={value.link} className={classes.link}>{value.title}</a>
                 </Typography>
               }
-             />
-            
+            />
+
           </ListItem>
         ))}
-        
-        
       </List>
     );
   }
