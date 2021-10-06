@@ -12,6 +12,7 @@ import PinnedList from "./components/PinnedList";
 import LatestNewsList from "./components/LatestNewsList";
 import LoadingPage from "./components/LoadingPage";
 import ErrorPage from "./components/ErrorPage";
+import Weather from "./components/Weather";
 import Footer from "./components/Footer";
 
 const styles = () => ({
@@ -60,7 +61,7 @@ class App extends Component {
     this.setState(() => {
       guardianApi("", 0)
         .then(({ data: { response } }) => {
-          let results = groupBySection(response.results).slice(0, 5);
+          let results = groupBySection(response.results).slice(0, 10);
           this.setState({
             latestNews: [...results],
             error: "",
@@ -122,7 +123,7 @@ class App extends Component {
       loading,
       error,
     } = this.state;
-    console.log(results)
+    //console.log(results);
     let element = null;
     let latestNewsList = null;
     if (loading && error.length === 0) {
@@ -160,6 +161,7 @@ class App extends Component {
             handleSearch={this.handleSearch}
             handleUserTypes={this.handleUserTypes}
           />
+          <Weather/>
         </div>
         <div className="App">
           <div>

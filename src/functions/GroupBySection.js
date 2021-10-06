@@ -13,7 +13,10 @@ export default (data) => {
           title: item.webTitle,
           link: item.webUrl,
           date: moment(item.webPublicationDate).format('DD/MM/YYYY'),
-          section: item.sectionId
+          section: item.sectionId,
+          standFirst: item.fields.standfirst,
+          thumbnail: item.fields.thumbnail,
+          shortUrl: item.fields.shortUrl
         }
       );
     }

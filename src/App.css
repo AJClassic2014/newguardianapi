@@ -26,6 +26,7 @@
   animation: App-logo-spin infinite 20s linear;
   height: 20vmin;
   pointer-events: none;
+  margin-left: 50%;
 }
 
 .Container {

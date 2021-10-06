@@ -7,10 +7,14 @@ const styles = () => ({
   root: {
     color: '#000000', 
     textAlign: 'center',
+    display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  justfyContent: 'center',
   },
   loading: {
     color: '#ea4335', 
-    margin: 'auto',
+    marginLeft: '50%',
   },
 });
 

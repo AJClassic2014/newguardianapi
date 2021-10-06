@@ -40,9 +40,13 @@ const styles = theme => ({
     color: 'white',
   },
   link: {
-    color: "#000000",
+    fontSize: '0.8rem',
+    color: "#70757a",
     textDecoration: 'none',
-  }
+  },
+  rollUp: {
+    animation:'anis 10s linear infinite',
+  },
 });
 
 class LatestNewsList extends React.Component {
@@ -62,20 +66,21 @@ class LatestNewsList extends React.Component {
             Latest News
           </div>
         </div>
+        <div className={classes.rollUp}>
         {latestNews.map(value => (
           <ListItem key={value.id}>
             <ListItemText
               primary={
                 <Typography
                   className={classes.title}
-                  color="#000000">
+                  color="primary">
                   <a href={value.link} className={classes.link}>{value.title}</a>
                 </Typography>
               }
             />
 
           </ListItem>
-        ))}
+        ))}</div>
       </List>
     );
   }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
@@ -7,6 +7,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import Typography from '@material-ui/core/Typography';
+import StandFirst from "./StandFirst";
 
 const styles = theme => ({
   root: {
@@ -19,6 +20,7 @@ const styles = theme => ({
   title: {
     fontSize: '1rem',
     fontWeight: 550,
+    marginTop: 32,
   },
   section: {
     color: '#ff6600',
@@ -37,9 +39,41 @@ const styles = theme => ({
     color: 'white',
   },
   link: {
-    color: "#000000",
+    color: '#000000',
     textDecoration: 'none',
+  },
+
+  thumbNail:{
+  width:200,
+  borderRadius:12,
+  },
+
+  newsContainer:{
+    display: 'grid',
+    gridTemplateColumns:  '1fr 3fr',
+    gridColumnGap: '1rem',
+
+  },
+  altContainer:{
+    textAlign: 'right',
+  },
+  textContainer:{
+    display: 'grid',
+    gridTemplateRows:  '4fr 1fr',
+    justifyContent: 'start',
+    gridRowGap: '1rem',
+    textAlign: 'left',
+    //height: 170,
+  },
+  listItem:{
+    margin: '32 0',
+  },
+  sectionContainer: {
+    display: 'flex',
+    flexFlow: 'row nowrap',
+    justifyContent: 'space-between',
   }
+
 
 });
 
@@ -72,12 +106,12 @@ class CheckboxList extends React.Component {
     const {
       classes,
       results,
-      pinnedList,
     } = this.props;
+    console.log(results)
     return (
       <List dense className={classes.root}>
         {results.map(value => (
-          <ListItem key={value.id}>
+          <ListItem key={value.id} className={classes.listItem}>
             <ListItemText
               primary={
                 <Typography
@@ -88,10 +122,24 @@ class CheckboxList extends React.Component {
               }
               secondary={
                 <React.Fragment>
-                  <Typography component="span" color="textPrimary">
-                    Published: {value.date}  &nbsp;&nbsp;   <span className={classes.section}>Section:</span> {value.section}
-                  </Typography>
-                  <a href={value.link}>{value.link}</a>
+                  {((value.standFirst!=null||undefined)&&(value.thumbnail!=null||undefined))?(<div className={classes.newsContainer}>
+                    <div><img src={value.thumbnail} className={classes.thumbNail}/></div>
+                    <div className={classes.textContainer}>
+           
+                   <div><span>Published: {value.date}</span>
+                    <StandFirst text={(value.standFirst!=null||undefined)?value.standFirst.substring(0,2000):""}/> </div>
+                      
+                  <div className={classes.sectionContainer}>
+                 <a href={value.link}>{value.shortUrl}</a><span className={classes.section}>Section: {value.section}</span>
+                  </div>
+      
+                  </div>
+                  </div>):(<div className={classes.altContainer}>
+                    <span>Published: {value.date}</span><br/><span className={classes.section}>Section: {value.section}</span>
+                  </div>)
+                  
+                  
+                  }
                 </React.Fragment>
               } />
             <ListItemSecondaryAction>
