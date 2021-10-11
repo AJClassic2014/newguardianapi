@@ -2,32 +2,27 @@
 import React from "react";
 import { withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Input from '@material-ui/core/Input';
+import { BsSearch } from "react-icons/bs";
 
 const styles = theme => ({
   textField: {
     backgroundColor: '#ffffff',
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    marginBottom: 10,
-    width: 500,
+    borderRadius: 8,
+    width: 550,
+    height: 32,
   },
   button: {
-    margin: theme.spacing.unit,
-    marginTop: '13px',
-    width: 110,
-    backgroundColor: '#404040'
+   backgroundColor: '#ffffff',
   },
   inputHeight: {
     height: 4,
     fontSize: "1em"
   },
   searchField: {
-    marginTop: '10px',
-    display: 'flex',
-    flexFlow: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginLeft: 40,
+    marginTop: 13,
   },
 });
 
@@ -53,7 +48,7 @@ class SearchField extends React.Component {
     } = this.props;
     return (
       <div className={classes.searchField}>
-        <TextField
+        <Input
           id="outlined-name"
           className={classes.textField}
           margin="normal"
@@ -61,15 +56,17 @@ class SearchField extends React.Component {
           onChange={this.handleUserTypes}
           variant="outlined"
           InputProps={{ classes: { input: this.props.classes.inputHeight } }}
-        />
-        <Button
-          variant="contained"
-          color="primary"
+          endAdornment={
+            <InputAdornment position="end">
+              <Button
           className={classes.button}
           onClick={this.handleSearch}
         >
-          Search
+          <BsSearch className={classes.searchButton}/>
         </Button>
+            </InputAdornment>
+          }
+        /> 
       </div>
     )
   }

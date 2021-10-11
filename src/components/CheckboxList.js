@@ -11,7 +11,7 @@ import StandFirst from "./StandFirst";
 
 const styles = theme => ({
   root: {
-    width: 800,
+    width: 700,
     backgroundColor: theme.palette.background.paper,
   },
   inline: {
@@ -20,7 +20,7 @@ const styles = theme => ({
   title: {
     fontSize: '1rem',
     fontWeight: 550,
-    marginTop: 32,
+    marginTop: 20,
   },
   section: {
     color: '#ff6600',
@@ -63,15 +63,21 @@ const styles = theme => ({
     justifyContent: 'start',
     gridRowGap: '1rem',
     textAlign: 'left',
-    //height: 170,
   },
   listItem:{
     margin: '32 0',
+  },
+  standFrist:{
+    width: 417,
   },
   sectionContainer: {
     display: 'flex',
     flexFlow: 'row nowrap',
     justifyContent: 'space-between',
+    width: 417,
+  },
+  published:{
+    float:'right',
   }
 
 
@@ -126,7 +132,7 @@ class CheckboxList extends React.Component {
                     <div><img src={value.thumbnail} className={classes.thumbNail}/></div>
                     <div className={classes.textContainer}>
            
-                   <div><span>Published: {value.date}</span>
+                   <div className={classes.standFrist}><span className={classes.published}>Published: {value.date}</span>
                     <StandFirst text={(value.standFirst!=null||undefined)?value.standFirst.substring(0,2000):""}/> </div>
                       
                   <div className={classes.sectionContainer}>

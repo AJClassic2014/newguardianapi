@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 //import ThreeDRotation from '@material-ui/icons/ThreeDRotation';
 import './App.css';
+import { IoEarthOutline } from "react-icons/io5";
 import { withStyles } from '@material-ui/core/styles';
 import groupBySection from "./functions/GroupBySection";
 import guardianApi from "./functions/GuardianApi";
@@ -10,6 +11,7 @@ import NoResults from "./components/NoResults";
 import ResultList from "./components/ResultList";
 import PinnedList from "./components/PinnedList";
 import LatestNewsList from "./components/LatestNewsList";
+import SectionGroup from "./components/SectionGroup";
 import LoadingPage from "./components/LoadingPage";
 import ErrorPage from "./components/ErrorPage";
 import Weather from "./components/Weather";
@@ -17,10 +19,10 @@ import Footer from "./components/Footer";
 
 const styles = () => ({
   title: {
-    padding: '15px 0 0 85px',
+    padding: '13px 0 0 26px',
     fontSize: '2rem',
     fontWeight: 700,
-    width: '100px',
+    width: '140px',
     color: '#FFFFFF',
     backgroundColor: '#0f1010',
   }
@@ -34,6 +36,7 @@ class App extends Component {
       error: "",
       userTypes: "",
       results: [],
+      activeSection: "all",
       latestNews: [],
       pinnedList: [],
       currentPage: 0,
@@ -44,6 +47,7 @@ class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleUserTypes = this.handleUserTypes.bind(this);
     this.handlePage = this.handlePage.bind(this);
+    this.handleSection = this.handleSection.bind(this);
     this.handlePinnedList = this.handlePinnedList.bind(this);
     this.getResultList = this.getResultList.bind(this);
     this.getLatestNews = this.getLatestNews.bind(this);
@@ -56,6 +60,10 @@ class App extends Component {
   handlePinnedList = (pinnedList) => {
     this.setState({ pinnedList: pinnedList });
   };
+
+  handleSection = (activeSection) => {
+    this.setState({ activeSection: activeSection });
+};
 
   getLatestNews = () => {
     this.setState(() => {
@@ -72,7 +80,7 @@ class App extends Component {
           this.setState({ error: error.message });
         });
     });
-  }
+  };
 
   getResultList = (input, page) => {
     this.setState({ loading: true, }, () => {
@@ -93,7 +101,7 @@ class App extends Component {
           this.setState({ error: error.message });
         });
     });
-  }
+  };
 
   handlePage = (currentPage) => {
     if (currentPage >= 1) {
@@ -152,9 +160,10 @@ class App extends Component {
     return (
       <div>
         <div className="Header">
+        <div className="searchArea">
           <Typography
             className={classes.title}>
-            Gnews
+             Gnews<IoEarthOutline className={classes.slogan}/>
           </Typography>
           <SearchField
             userTypes={userTypes}
@@ -162,6 +171,8 @@ class App extends Component {
             handleUserTypes={this.handleUserTypes}
           />
           <Weather/>
+        </div>
+        <SectionGroup handleSection={this.handleSection}/>
         </div>
         <div className="App">
           <div>
@@ -171,7 +182,7 @@ class App extends Component {
             {element}
             <Footer />
           </div>
-          <div>
+          <div className="App-right">
             {latestNewsList}
             <PinnedList
               results={results}

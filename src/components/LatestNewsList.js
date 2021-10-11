@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    width: 400,
+    width: 368,
     marginTop: 40,
     backgroundColor: theme.palette.background.paper,
   },

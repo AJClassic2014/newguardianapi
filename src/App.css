@@ -1,25 +1,37 @@
-.Header{
+.searchArea{
   display:grid;
   grid-template-columns: 140px 4fr 3fr;
   align-items: center;
-  justify-items: center;
+  justify-items: start;
   padding: 0 0 14px 0;
     margin: 0;
     width: 100%;
-    z-index: 301;
+   z-index: 301; 
     min-width: 1000px;
     background: #0f1010;
     border-bottom: 1px solid #ebebeb;
-    position: fixed;
-    top:0;
+    position: fixed; 
+     top:0; 
+}
+
+Header{
+  display:flex;
+  flex-direction: column;
+  position: fixed;
+  top:0;
+  z-index: 301;
 }
 
 .App {
   text-align: center;
   display: grid;
-  grid-template-columns: 140px 1fr 1fr;
+  grid-template-columns: 120px 1fr 1fr;
   grid-column-gap: 10px;
   margin-top: 7%; 
+}
+
+.App-right{
+  padding-left: 18%;
 }
 
 .App-logo {
@@ -27,6 +39,10 @@
   height: 20vmin;
   pointer-events: none;
   margin-left: 50%;
+}
+
+.slogan {
+  display: inline-block;
 }
 
 .Container {
@@ -44,7 +60,7 @@
 .Total {
   color: #70757a;
   font-size: 14px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .searchField{

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
   root: {
-    width: 400,
+    width: 368,
     marginTop: 40,
     backgroundColor: theme.palette.background.paper,
   },
@@ -91,7 +91,7 @@ class PinnedList extends React.Component {
               <ListItemText
                 primary={
                   <Typography className={classes.title} color="textPrimary">
-                    {pinnedItem.title}
+                    <a href={pinnedItem.link} className={classes.link}>{pinnedItem.title}</a>
                   </Typography>
                 }
               />
