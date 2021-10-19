@@ -23,7 +23,12 @@ const styles = theme => ({
     marginTop: 20,
   },
   section: {
-    color: '#ff6600',
+/*     color: '#ff6600',
+    background: '#F5F5F6', */
+    color: '#71767b',
+    background: '#F5F5F6',
+    height: 21,
+    borderRadius: 5,
   },
   pinned: {
     backgroundColor: '#70c5ca85',
@@ -39,8 +44,11 @@ const styles = theme => ({
     color: 'white',
   },
   link: {
-    color: '#000000',
+    color: '#1a0dab',
     textDecoration: 'none',
+    fontFamily: 'Roboto, sans-serif',
+    fontSize: 20,
+    fontWeight: 'normal',
   },
 
   thumbNail:{
@@ -136,12 +144,12 @@ class CheckboxList extends React.Component {
                     <StandFirst text={(value.standFirst!=null||undefined)?value.standFirst.substring(0,2000):""}/> </div>
                       
                   <div className={classes.sectionContainer}>
-                 <a href={value.link}>{value.shortUrl}</a><span className={classes.section}>Section: {value.section}</span>
+                 <a href={value.link}>{value.shortUrl}</a><span className={classes.section}>&nbsp;Section: {value.section}&nbsp;</span>
                   </div>
       
                   </div>
                   </div>):(<div className={classes.altContainer}>
-                    <span>Published: {value.date}</span><br/><span className={classes.section}>Section: {value.section}</span>
+                    <span>Published: {value.date}</span><br/><span className={classes.section}>&nbsp;Section: {value.section}&nbsp;</span>
                   </div>)
                   
                   

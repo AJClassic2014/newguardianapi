@@ -6,6 +6,7 @@
     "@material-ui/core": "^3.9.2",
     "@material-ui/icons": "^5.0.0-beta.5",
     "axios": "^0.18.0",
+    "bootstrap-icons": "^1.6.0",
     "guardian-js": "^2.0.0",
     "moment": "^2.24.0",
     "react": "^16.8.3",

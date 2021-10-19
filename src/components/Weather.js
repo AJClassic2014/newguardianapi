@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import weatherApi from "../functions/WeatherApi";
-import Typography from '@material-ui/core/Typography';
+import { WiDaySunny } from "react-icons/wi";
 
 const styles = () => ({
   root: {
@@ -13,12 +13,14 @@ const styles = () => ({
     gridTemplateColumns: '2fr 1fr 2fr',
     alignItems: 'center',
     justifyItems: 'center',
+    paddingLeft: 92,
     //gridColumnGap: '1rem',
 
   },
   weatherImg:{
       width: 40,
       borderRadius: 12,
+      color: '#ffffff',
   },
   weatherInfo:{
     color: '#ccc',
@@ -76,10 +78,11 @@ const { classes,
               Melbourne    
               </span>
 
-        <img src={weatherIcons} className={classes.weatherImg}/>    
+       <img src="https://weatherstack.com/site_images/weather_icon_partly_cloudy.svg" className={classes.weatherImg}/> 
+       {/* <WiDaySunny className={classes.weatherImg}/> */}
 
         <span className={classes.weatherInfo}>
-        <span className={classes.temperature}>{temperature}°C</span> Now  <br/> {weatherDescriptions}
+        <span className={classes.temperature}>14°C</span> Now  <br/> Sunny
         </span>
       </div>
     );

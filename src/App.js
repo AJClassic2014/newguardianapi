@@ -19,8 +19,8 @@ import Footer from "./components/Footer";
 
 const styles = () => ({
   title: {
-    padding: '13px 0 0 26px',
-    fontSize: '2rem',
+    padding: '13px 0 0 16px',
+    fontSize: '1.4rem',
     fontWeight: 700,
     width: '140px',
     color: '#FFFFFF',
@@ -62,12 +62,15 @@ class App extends Component {
   };
 
   handleSection = (activeSection) => {
-    this.setState({ activeSection: activeSection });
+    this.setState({ activeSection: activeSection },()=>{
+      this.handleSearch();
+    }
+      );
 };
 
   getLatestNews = () => {
     this.setState(() => {
-      guardianApi("", 0)
+      guardianApi("", 0,"all")
         .then(({ data: { response } }) => {
           let results = groupBySection(response.results).slice(0, 10);
           this.setState({
@@ -82,9 +85,9 @@ class App extends Component {
     });
   };
 
-  getResultList = (input, page) => {
+  getResultList = (input, page,activeSection) => {
     this.setState({ loading: true, }, () => {
-      guardianApi(input, page)
+      guardianApi(input, page,activeSection)
         .then(({ data: { response } }) => {
           let results = groupBySection(response.results);
           this.setState({
@@ -105,16 +108,16 @@ class App extends Component {
 
   handlePage = (currentPage) => {
     if (currentPage >= 1) {
-      this.getResultList(this.state.userTypes, currentPage);
+      this.getResultList(this.state.userTypes, currentPage, this.state.activeSection);
     }
   };
 
   handleSearch = () => {
-    this.getResultList(this.state.userTypes, 1);
+    this.getResultList(this.state.userTypes, 1, this.state.activeSection);
   };
 
   componentDidMount = () => {
-    this.getResultList(this.state.userTypes, this.state.currentPage);
+    this.getResultList(this.state.userTypes, this.state.currentPage, "all");
     this.getLatestNews();
   };
 

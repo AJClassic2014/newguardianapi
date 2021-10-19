@@ -28,17 +28,27 @@ const styles = theme => ({
   newsBar: {
     display: 'flex',
     alignContent: 'center',
-    minHeight: '3rem',
     fontSize: '1rem',
     fontWeight: 550,
-    backgroundColor: '#ee0017',
   },
   newsTitle: {
-    margin: 'auto',
-    fontSize: '1rem',
+    paddingLeft: 10,
+    fontSize: '1.4rem',
     fontWeight: 550,
-    color: 'white',
+    color: '#000000',
   },
+
+  listItem: {
+    borderBottom: 'solid',
+    borderBottomWidth: 1,
+    borderBottomColor: '#e6e6e6',
+  },
+
+  titleLeft:{
+    width: 11,
+    backgroundColor: '#01cfff',
+  },
+
   link: {
     fontSize: '0.8rem',
     color: "#70757a",
@@ -62,13 +72,13 @@ class LatestNewsList extends React.Component {
     return (
       <List dense className={classes.root}>
         <div className={classes.newsBar}>
-          <div className={classes.newsTitle}>
-            Latest News
+          
+            <span className={classes.titleLeft}>&nbsp;</span><div className={classes.newsTitle}>Latest News
           </div>
         </div>
         <div className={classes.rollUp}>
         {latestNews.map(value => (
-          <ListItem key={value.id}>
+          <ListItem key={value.id} className={classes.listItem}>
             <ListItemText
               primary={
                 <Typography

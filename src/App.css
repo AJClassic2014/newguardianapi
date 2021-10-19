@@ -1,6 +1,6 @@
 .searchArea{
   display:grid;
-  grid-template-columns: 140px 4fr 3fr;
+  grid-template-columns: 85px 4fr 3fr;
   align-items: center;
   justify-items: start;
   padding: 0 0 14px 0;

@@ -30,16 +30,18 @@ const styles = theme => ({
   pinnedBar: {
     display: 'flex',
     alignContent: 'center',
-    minHeight: '3rem',
     fontSize: '1rem',
     fontWeight: 550,
-    backgroundColor: '#feb301',
   },
   pinnedTitle: {
-    margin: 'auto',
-    fontSize: '1rem',
+    paddingLeft: 10,
+    fontSize: '1.4rem',
     fontWeight: 550,
-    color: 'white',
+    color: '#000000',
+  },
+  titleLeft: {
+    width:11,
+    backgroundColor: '#fdc605',
   },
   link: {
     textDecoration: 'none',
@@ -81,9 +83,9 @@ class PinnedList extends React.Component {
     return (
       <List dense className={classes.root}>
         <div className={classes.pinnedBar}>
-          <span className={classes.pinnedTitle}>
-            Pinned Items
-          </span>
+         <span className={classes.titleLeft}>&nbsp;</span> <div className={classes.pinnedTitle}>
+            Watch Later
+          </div>
         </div>
         {
           pinnedList.map(pinnedItem => (
